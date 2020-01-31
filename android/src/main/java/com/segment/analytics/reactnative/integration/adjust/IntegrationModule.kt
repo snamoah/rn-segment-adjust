@@ -58,6 +58,11 @@ class RNAnalyticsIntegration_AdjustModule(context: ReactApplicationContext): Rea
         Adjust.onCreate(adjustConfig)
     }
 
+    @ReactMethod
+    func getAttribution(callback: Callback) {
+        callback.invoke(attributionToMap(Adjust.getAttribution()));
+    }
+
     private fun attributionToMap(attribution: AdjustAttribution?): WritableMap {
         val map = Arguments.createMap()
         if (null == attribution) {

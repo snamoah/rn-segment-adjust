@@ -16,5 +16,6 @@ if (disabled) {
 	}
 
 	bridge.setup.setupListener = bridge.setupListener
+	bridge.setup.getAttribution = bridge.getAttribution
 	module.exports = bridge.setup
 }

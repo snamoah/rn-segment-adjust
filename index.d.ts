@@ -16,6 +16,7 @@ declare const AdjustIntegration:
     | { 
         (): Promise<void>;
         setupListener(token: string, environment: string, listener: Listener): void;
+        getAttribution(listener: Listener): void;
     }
 
 export = AdjustIntegration
