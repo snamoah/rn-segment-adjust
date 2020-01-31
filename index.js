@@ -15,5 +15,6 @@ if (disabled) {
 		throw new Error('Failed to load Adjust integration native module')
 	}
 
+	bridge.setup.setupListener = bridge.setupListener
 	module.exports = bridge.setup
 }
