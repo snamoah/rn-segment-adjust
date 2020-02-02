@@ -9,14 +9,14 @@ export interface AdjustAttribution {
     adid: string
   }
 
-type Listener = (attribution: AdjustAttribution) => Promise<void>;
+export type AdjustListener = (attribution: AdjustAttribution) => Promise<void>;
 
 declare const AdjustIntegration:
-    | {disabled: true, setupListener(): void}
+    | {disabled: true; setupListener(): void; getAttribution(): void}
     | { 
         (): Promise<void>;
-        setupListener(token: string, environment: string, listener: Listener): void;
-        getAttribution(listener: Listener): void;
+        setupListener(token: string, environment: string, listener: AdjustListener): void;
+        getAttribution(listener: AdjustListener): void;
     }
 
 export = AdjustIntegration
