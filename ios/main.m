@@ -30,7 +30,7 @@ RCT_EXPORT_METHOD(setupListener:(NSString *)token environment:(NSString *)enviro
                                                 environment:adjustConfigEnv];
     
     self.callback = callback;
-    
+    [adjustConfig setDelegate:self];
     [Adjust appDidLaunch:adjustConfig];
 }
 
@@ -56,6 +56,10 @@ RCT_EXPORT_METHOD(getAttribution:(RCTResponseSenderBlock)callback) {
 - (void)adjustAttributionChanged:(ADJAttribution *)attribution
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+    if (attribution == nil) {
+        self.callback(@[dictionary]);
+        return;
+    }
     
     [self addValueOrEmpty:dictionary key:@"trackerToken" value:attribution.trackerToken];
     [self addValueOrEmpty:dictionary key:@"trackerName" value:attribution.trackerName];
@@ -66,7 +70,7 @@ RCT_EXPORT_METHOD(getAttribution:(RCTResponseSenderBlock)callback) {
     [self addValueOrEmpty:dictionary key:@"clickLabel" value:attribution.clickLabel];
     [self addValueOrEmpty:dictionary key:@"adid" value:attribution.adid];
     
-    self.callback(@[attribution]);
+    self.callback(@[dictionary]);
 }
 
 - (void)addValueOrEmpty:(NSMutableDictionary *)dictionary
