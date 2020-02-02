@@ -1,4 +1,4 @@
-export interface AdjustAttribution {
+interface AdjustAttribution {
     trackerToken: string
     trackerName: string
     network: string
@@ -7,9 +7,9 @@ export interface AdjustAttribution {
     creative: string
     clickLabel: string
     adid: string
-  }
+}
 
-export type AdjustListener = (attribution: AdjustAttribution) => Promise<void>;
+type AdjustListener = (attribution: AdjustAttribution) => Promise<void>;
 
 declare const AdjustIntegration:
     | {disabled: true; setupListener(): void; getAttribution(): void}
