@@ -11,7 +11,7 @@
 #import <Adjust/Adjust.h>
 #import <Segment_Adjust/SEGAdjustIntegrationFactory.h>
 
-@interface RNAnalyticsIntegration_Adjust: NSObject<RCTBridgeModule>
+@interface RNAnalyticsIntegration_Adjust: NSObject<RCTBridgeModule, AdjustDelegate>
     @property RCTResponseSenderBlock callback;
 @end
 
