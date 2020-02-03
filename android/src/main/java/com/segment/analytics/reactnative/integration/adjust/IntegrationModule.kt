@@ -69,6 +69,21 @@ class RNAnalyticsIntegration_AdjustModule(context: ReactApplicationContext): Rea
             return map
         }
 
+        val analytics = Analytics.with(reactApplicationContext);
+        val campaign = ValueMap()
+                .putValue("source", attribution.network)
+                .putValue("name", attribution.campaign)
+                .putValue("content", attribution.clickLabel)
+                .putValue("adCreative", attribution.creative)
+                .putValue("adGroup", attribution.adgroup)
+
+        analytics.track("Install Attributed", Properties()
+                .putValue("provider", "Adjust") //
+                .putValue("trackerToken", attribution.trackerToken)
+                .putValue("trackerName", attribution.trackerName)
+                .putValue("campaign", campaign))
+
+
         map.putString(ATTRIBUTION_TRACKER_TOKEN, if (null != attribution.trackerToken) attribution.trackerToken else "")
         map.putString(ATTRIBUTION_TRACKER_NAME, if (null != attribution.trackerName) attribution.trackerName else "")
         map.putString(ATTRIBUTION_NETWORK, if (null != attribution.network) attribution.network else "")
