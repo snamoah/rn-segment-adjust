@@ -60,19 +60,6 @@ RCT_EXPORT_METHOD(getAttribution:(RCTResponseSenderBlock)callback) {
         self.callback(@[dictionary]);
         return;
     }
-    SEGAnalytics *analytics = [SEGAnalytics sharedAnalytics];
-    [analytics track:@"Install Attributed" properties:@{
-        @"provider" : @"Adjust",
-        @"trackerToken" : attribution.trackerToken ?: [NSNull null],
-        @"trackerName" : attribution.trackerName ?: [NSNull null],
-        @"campaign" : @{
-            @"source" : attribution.network ?: [NSNull null],
-            @"name" : attribution.campaign ?: [NSNull null],
-            @"content" : attribution.clickLabel ?: [NSNull null],
-            @"adCreative" : attribution.creative ?: [NSNull null],
-            @"adGroup" : attribution.adgroup ?: [NSNull null]
-        }
-    }];
     
     [self addValueOrEmpty:dictionary key:@"trackerToken" value:attribution.trackerToken];
     [self addValueOrEmpty:dictionary key:@"trackerName" value:attribution.trackerName];
