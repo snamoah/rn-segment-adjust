@@ -9,7 +9,7 @@
 #import <React/RCTBridgeModule.h>
 #import <RNAnalytics/RNAnalytics.h>
 #import <Adjust/Adjust.h>
-#import <Segment_Adjust/SEGAdjustIntegrationFactory.h>
+#import <Segment-Adjust/SEGAdjustIntegrationFactory.h>
 
 @interface RNAnalyticsIntegration_Adjust: NSObject<RCTBridgeModule, AdjustDelegate>
     @property RCTResponseSenderBlock callback;
