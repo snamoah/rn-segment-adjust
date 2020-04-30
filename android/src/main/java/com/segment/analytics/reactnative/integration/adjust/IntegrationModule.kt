@@ -56,6 +56,7 @@ class RNAnalyticsIntegration_AdjustModule(context: ReactApplicationContext): Rea
         val adjustConfig = AdjustConfig(reactApplicationContext, token, adjustConfigEnv)
         adjustConfig.setOnAttributionChangedListener { attribution -> callback.invoke(attributionToMap(attribution)) }
         Adjust.onCreate(adjustConfig)
+        Adjust.onResume()
     }
 
     @ReactMethod
